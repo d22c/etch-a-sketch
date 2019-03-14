@@ -1,34 +1,44 @@
 
 
 let dimensions = 16;
-const container = document.querySelector('#container');
-const clearBtn = document.querySelector('.clearBtn');
+const gridContainer = document.querySelector('.gridContainer');
+const btnContainer = document.querySelector('.btnContainer button');
 
 
-//Create a grid with specified dimensions (default is 16x16)
-function createGrid(dimensions) {
-    for (let i = 0; i < dimensions; i++) {
-        console.log('row');
-        let row = document.createElement('div');
-        row.classList.add('row');
-        container.appendChild(row);
-        for (let j = 0; j < dimensions; j++) {
-            console.log('column');
-            let column = document.createElement('div');
-            column.classList.add('.col');
-            column.classList.add('col-1-16');
-            row.appendChild(column);
-        }
+function removeGrid(){
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
     }
 }
 
-clearBtn.addEventListener('click', function(){
+
+//Create a grid with specified dimensions (default is 16x16)
+function createGrid(dimensionsInput) {
+    //first remove current grid
+    removeGrid();
+    //change number of columns based on dimensions
+    gridContainer.style = "grid-template-columns: repeat(" + Math.sqrt(dimensionsInput) + ", 1fr)";
+
+    //create grids
+    for (let i = 0; i < dimensionsInput; i++) {
+        console.log('unit');
+        let unit = document.createElement('div');
+        unit.classList.add('unit');
+        unit.textContent = ' ';
+        gridContainer.appendChild(unit);
+
+        //allows grid to display background color without text
+        unit.appendChild(document.createElement('p'));
+    }
+}
+
+btnContainer.addEventListener('click', function(){
     dimensions = prompt('Enter a number that will be the dimensions of your new grid. (For example, entering 16 will create a 16x16 grid.)');
     //add check to see if input is a number and keep prompting until it is
-    createGrid(dimensions);
+    createGrid(dimensions*dimensions);
 
 });
 
 window.onload = function() {
-createGrid(dimensions);
+createGrid(dimensions*dimensions);
 }

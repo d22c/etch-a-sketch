@@ -1,44 +1,26 @@
-*, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-
-.clearBtn{
-    margin-left:auto;
-    margin-right:auto;
+html {
+  background: #c5bdbd;
+  height: 100%;
 }
 
+.btnContainer {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
  /* Grid CSS */
-.row {
-    margin-right: -5px;
+
+ .gridContainer{
+  display: grid;
+  grid-template-columns: repeat(16,1fr);
+  grid-gap:2px;
+  grid-auto-rows: 1em;
 }
-.col {
-    background-color: rgb(180, 28, 28);
-    float: left;
-    padding-right: 5px;
-  }
 
-  .col-1-16 {
-      width: 6.25%;
-  }
+.unit {
+  background:#ffffff;
+}
 
-  .row:before,
-  .row:after,
-  .group:before,
-  .group:after {
-    content: "";
-    display: table;
-  }
-  
-  .row:after,
-  .group:after {
-    clear: both;
-  }
-  
-  .row,
-  .group {
-    zoom: 1;
-  }
