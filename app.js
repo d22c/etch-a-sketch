@@ -1,4 +1,6 @@
-
+//TODO: Check if user prompt input is a valid number
+//TODO: Resize row heights to dynamically fit screen height
+//TODO: Get 'hover off' effect to be delayed
 
 let dimensions = 16;
 const gridContainer = document.querySelector('.gridContainer');
@@ -46,7 +48,7 @@ function enableSketch() {
         });
 
         unit.addEventListener('mouseleave', function () {
-            unit.classList.remove('active');
+            setTimeout(() => unit.classList.remove('active'),2000);
 
         });
     });
