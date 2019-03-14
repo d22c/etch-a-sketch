@@ -5,7 +5,7 @@ const gridContainer = document.querySelector('.gridContainer');
 const btnContainer = document.querySelector('.btnContainer button');
 
 
-function removeGrid(){
+function removeGrid() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
@@ -30,15 +30,35 @@ function createGrid(dimensionsInput) {
         //allows grid to display background color without text
         unit.appendChild(document.createElement('p'));
     }
+    console.log('creategrid');
+    enableSketch();
 }
 
-btnContainer.addEventListener('click', function(){
+function enableSketch() {
+    console.log('enable sketch');
+    let units = document.getElementsByClassName('unit');
+   // console.log(units);
+   // console.log(units[0]);
+    Array.from(units).forEach((unit) => {
+        unit.addEventListener('mouseenter', function () {
+            unit.classList.add('active');
+
+        });
+
+        unit.addEventListener('mouseleave', function () {
+            unit.classList.remove('active');
+
+        });
+    });
+}
+
+btnContainer.addEventListener('click', function () {
     dimensions = prompt('Enter a number that will be the dimensions of your new grid. (For example, entering 16 will create a 16x16 grid.)');
     //add check to see if input is a number and keep prompting until it is
-    createGrid(dimensions*dimensions);
+    createGrid(dimensions * dimensions);
 
 });
 
-window.onload = function() {
-createGrid(dimensions*dimensions);
+window.onload = function () {
+    createGrid(dimensions * dimensions);
 }

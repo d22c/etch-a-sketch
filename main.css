@@ -1,6 +1,5 @@
 html {
   background: #c5bdbd;
-  height: 100%;
 }
 
 .btnContainer {
@@ -11,16 +10,29 @@ html {
 
 }
 
+.btnContainer button {
+  background: rgb(245, 40, 40);
+  color: #fff;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 2px 7px;
+}
+
  /* Grid CSS */
 
  .gridContainer{
   display: grid;
   grid-template-columns: repeat(16,1fr);
+  grid-template-rows: repeat(16, 6.25%);
   grid-gap:2px;
-  grid-auto-rows: 1em;
 }
 
 .unit {
   background:#ffffff;
+}
+
+div.active {
+  background: #000;
 }
 
