@@ -1,6 +1,4 @@
-//TODO: Check if user prompt input is a valid number
-//TODO: Resize row heights to dynamically fit screen height
-//TODO: Get 'hover off' effect to be delayed
+//TODO: Add rainbow button functionality
 
 //Initialize prompt messages
 const promptMsg = 'Please enter an integer less than or equal to 150. This integer that will be the dimensions of your new grid. ' +
@@ -10,7 +8,7 @@ const errorPrompt = 'Invalid input. Please enter an integer number less than 150
 let dimensions = 16;
 //Get references to grid container, button container, and grid height
 const gridContainer = document.querySelector('.gridContainer');
-const btnContainer = document.querySelector('.btnContainer button');
+const clearBtn = document.querySelector('.clearBtn');
 const gridHeight = getComputedStyle(gridContainer).height;
 
 //removes current grid
@@ -49,7 +47,7 @@ function setRowHeight() {
     Array.from(heightElems).forEach((h) => heightElems.style = `height: calc(${gridHeight}/${dimensions})`);
 }
 
-/* Allow grid units to be drawn on by adding and removing a CSS class */
+/* Allow grid units to be drawn on by adding a CSS class */
 function enableSketch() {
 
     let units = document.getElementsByClassName('unit');
@@ -59,19 +57,15 @@ function enableSketch() {
             unit.classList.add('active');
 
         });
-        //Delayed removal of 'active' class when mouse pointer leaves div for a trailing effect
-        unit.addEventListener('mouseleave', function () {
-            setTimeout(() => unit.classList.remove('active'), 4000);
 
-        });
     });
 }
 //Get dimensions from user 
-btnContainer.addEventListener('click', function () {
-    let rem = dimensions%1;
+clearBtn.addEventListener('click', function () {
+    let rem = dimensions % 1;
     //checks if input is a valid input (integer <= 200)
     do {
-        if((rem===0)&&(dimensions<=150)) { dimensions = prompt(promptMsg); }
+        if ((rem === 0) && (dimensions <= 150)) { dimensions = prompt(promptMsg); }
         else { dimensions = prompt(errorPrompt); }
         rem = dimensions % 1;
 
