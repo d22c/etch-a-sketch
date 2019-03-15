@@ -5,8 +5,9 @@
 let dimensions = 16;
 const gridContainer = document.querySelector('.gridContainer');
 const btnContainer = document.querySelector('.btnContainer button');
+const gridHeight = getComputedStyle(gridContainer).height;
 
-
+//removes current grid
 function removeGrid() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
@@ -33,20 +34,26 @@ function createGrid(dimensionsInput) {
         unit.appendChild(document.createElement('p'));
     }
     console.log('creategrid');
+    setRowHeight();
     enableSketch();
 }
 
+/* Calculate and set row height using gridContainer height divided by (# of columns - 1)*/
+function setRowHeight() {
+    let heightElems = document.querySelectorAll('div.unit p');
+    Array.from(heightElems).forEach((h) => heightElems.style = `height: calc(${gridHeight}/(${dimensions}-1))`);
+}
+
+/* Allow grid units to be drawn on by adding and removing a CSS class */
 function enableSketch() {
     console.log('enable sketch');
     let units = document.getElementsByClassName('unit');
-   // console.log(units);
-   // console.log(units[0]);
     Array.from(units).forEach((unit) => {
         unit.addEventListener('mouseenter', function () {
             unit.classList.add('active');
 
         });
-
+        //Delayed removal of CSS class for a trailing effect
         unit.addEventListener('mouseleave', function () {
             setTimeout(() => unit.classList.remove('active'),2000);
 

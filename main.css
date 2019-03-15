@@ -1,6 +1,12 @@
-html {
+html, body {
   background: #c5bdbd;
+  height:100%
 }
+
+*,*::before,*::after {
+  box-sizing: border-box;
+}
+
 
 .btnContainer {
   margin-bottom: 10px;
@@ -22,9 +28,9 @@ html {
  /* Grid CSS */
 
  .gridContainer{
+  height:92.5%;
   display: grid;
-  grid-template-columns: repeat(16,1fr);
-  grid-template-rows: repeat(16, 6.25%);
+  /* grid-template-columns and row height both handled in app.js file */
   grid-gap:2px;
 }
 
@@ -36,3 +42,7 @@ div.active {
   background: #000;
 }
 
+.unit p {
+  /*Allows to JS to resize height as small as it wants without font-size limit */
+  font-size:0;
+}
