@@ -33,7 +33,6 @@ html, body {
   display: block;
   float: left;
   width: 83px;
-  background: #fffff0;
   color: #270a0a;
   text-align: center;
   border-radius: 10px;
@@ -48,6 +47,17 @@ html, body {
   height:auto;
   display:inline-block;
 } */
+
+button.clearBtn {
+  background: #FFFFF0;
+}
+
+button.rainbowBtn {
+  background: #40E0D0;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0); 
+  background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0); 
+
+}
 
  /* Grid CSS */
 
