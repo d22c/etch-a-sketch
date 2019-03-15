@@ -9,6 +9,7 @@ html, body {
 
 
 .btnContainer {
+  height: 2%;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -28,10 +29,10 @@ html, body {
  /* Grid CSS */
 
  .gridContainer{
-  height:92.5%;
+  height:95%;
   display: grid;
   /* grid-template-columns and row height both handled in app.js file */
-  grid-gap:2px;
+  grid-gap:1px;
 }
 
 .unit {

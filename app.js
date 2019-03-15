@@ -2,7 +2,13 @@
 //TODO: Resize row heights to dynamically fit screen height
 //TODO: Get 'hover off' effect to be delayed
 
+//Initialize prompt messages
+const promptMsg = 'Please enter an integer less than or equal to 200. This integer that will be the dimensions of your new grid. ' +
+    '(For example, entering 16 will create a 16x16 grid.)';
+const errorPrompt = 'Invalid input. Please enter an integer number less than 250.';
+//Initialize initial dimensions
 let dimensions = 16;
+//Get references to grid container, button container, and grid height
 const gridContainer = document.querySelector('.gridContainer');
 const btnContainer = document.querySelector('.btnContainer button');
 const gridHeight = getComputedStyle(gridContainer).height;
@@ -55,14 +61,22 @@ function enableSketch() {
         });
         //Delayed removal of CSS class for a trailing effect
         unit.addEventListener('mouseleave', function () {
-            setTimeout(() => unit.classList.remove('active'),2000);
+            setTimeout(() => unit.classList.remove('active'), 4000);
 
         });
     });
 }
-
+//Get dimensions from user 
 btnContainer.addEventListener('click', function () {
-    dimensions = prompt('Enter a number that will be the dimensions of your new grid. (For example, entering 16 will create a 16x16 grid.)');
+    let rem = dimensions%1;
+    //checks if input is a valid input (integer <= 200)
+    do {
+        if((rem===0)&&(dimensions<=200)) { dimensions = prompt(promptMsg); }
+        else { dimensions = prompt(errorPrompt); }
+        rem = dimensions % 1;
+
+    } while ((rem % 1 != 0) || (dimensions > 200))
+
     //add check to see if input is a number and keep prompting until it is
     createGrid(dimensions * dimensions);
 
