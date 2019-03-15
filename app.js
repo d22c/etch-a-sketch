@@ -1,15 +1,15 @@
-//TODO: Add rainbow button functionality
-
 //Initialize prompt messages
 const promptMsg = 'Please enter an integer less than or equal to 150. This integer that will be the dimensions of your new grid. ' +
     '(For example, entering 16 will create a 16x16 grid.)';
 const errorPrompt = 'Invalid input. Please enter an integer number less than 150.';
 //Initialize initial dimensions
 let dimensions = 16;
-//Get references to grid container, button container, and grid height
+//Get references to grid container, buttons, and grid height
 const gridContainer = document.querySelector('.gridContainer');
-const clearBtn = document.querySelector('.clearBtn');
 const gridHeight = getComputedStyle(gridContainer).height;
+const clearBtn = document.querySelector('.clearBtn');
+const rainbowBtn = document.querySelector('.rainbowBtn');
+
 
 //removes current grid
 function removeGrid() {
@@ -60,7 +60,7 @@ function enableSketch() {
 
     });
 }
-//Get dimensions from user 
+//Make new grid using dimensions from user input if 'Clear Grid' button is clicked
 clearBtn.addEventListener('click', function () {
     let rem = dimensions % 1;
     //checks if input is a valid input (integer <= 200)
@@ -71,8 +71,25 @@ clearBtn.addEventListener('click', function () {
 
     } while ((rem % 1 != 0) || (dimensions > 150))
 
-    //add check to see if input is a number and keep prompting until it is
     createGrid(dimensions * dimensions);
+
+});
+
+//Add to 'rainbow' effect to all units if rainbow button is clicked
+rainbowBtn.addEventListener('click', function () {
+    let r, g, b;
+    let units = document.getElementsByClassName('unit');
+    Array.from(units).forEach((unit) => {
+        unit.addEventListener('mouseenter', function () {
+            //randomly generate rgb value and make that the background
+            r = Math.floor(Math.random() * 255) + 1;
+            g = Math.floor(Math.random() * 255) + 1;
+            b = Math.floor(Math.random() * 255) + 1;
+            unit.style.background = `rgb(${r},${g},${b})`;
+
+        });
+
+    });
 
 });
 
